@@ -1,0 +1,2 @@
+# learnRect
+ สำหรับศึกษา react 
