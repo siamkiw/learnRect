@@ -1,0 +1,36 @@
+.Dice {
+    color: slateblue;
+    font-size: 10em;
+    padding: 0.25em;
+}
+
+.shake{
+    animation-name: shake;
+    animation-duration: 1s;
+}
+
+@keyframes wiggle {
+    0% { transform: rotate(0deg); }
+   80% { transform: rotate(0deg); }
+   85% { transform: rotate(5deg); }
+   95% { transform: rotate(-5deg); }
+  100% { transform: rotate(0deg); }
+}
+
+@keyframes shake {
+    10%, 90% {
+      transform: translate3d(-3px, 0, 0);
+    }
+    
+    20%, 80% {
+      transform: translate3d(7px, 0, 0);
+    }
+  
+    30%, 50%, 70% {
+      transform: translate3d(-16px, 0, 0);
+    }
+  
+    40%, 60% {
+      transform: translate3d(12px, 0, 0);
+    }
+  } 
