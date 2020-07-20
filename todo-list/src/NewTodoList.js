@@ -18,7 +18,7 @@ export class NewTodoList extends Component {
 
     handleSubmit(evt) {
         evt.preventDefault()
-        const newTodo = { ...this.state, id: v4() }
+        const newTodo = { ...this.state, id: v4(), completed: false }
         this.props.createNewTodo(newTodo)
         this.setState({ task: '' })
     }

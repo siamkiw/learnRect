@@ -10,6 +10,8 @@ export class TodoList extends Component {
         }
         this.createNewTodo = this.createNewTodo.bind(this)
         this.removeTodo = this.removeTodo.bind(this)
+        this.updateTodo = this.updateTodo.bind(this)
+        this.toggleCompletion = this.toggleCompletion.bind(this)
     }
 
     createNewTodo(newTodo) {
@@ -22,11 +24,49 @@ export class TodoList extends Component {
         })
     }
 
+    updateTodo(id, updatedTask) {
+        const updatedTodos = this.state.todos.map(todo => {
+            if (todo.id === id) {
+                return { ...todo, task: updatedTask }
+            }
+            return todo
+        })
+        this.setState({
+            todos: updatedTodos
+        })
+    }
+
+    toggleCompletion(id) {
+        const updatedTodos = this.state.todos.map(todo => {
+            if (todo.id === id) {
+                return { ...todo, completed: !todo.completed }
+            }
+            return todo
+        })
+        this.setState({
+            todos: updatedTodos
+        })
+    }
+
     render() {
-        const list = this.state.todos.map(todo => (<Todo key={todo.id} id={todo.id} todo={todo.task} remove={() => this.removeTodo(todo.id)} />))
+        const list = this.state.todos.map(todo => (
+            <Todo
+                key={todo.id}
+                id={todo.id}
+                todo={todo.task}
+                completed={todo.completed}
+                remove={() => this.removeTodo(todo.id)}
+                updatedTodo={this.updateTodo}
+                toggle={this.toggleCompletion}
+            />
+        ))
+
         return (
             <div>
-                {list}
+                <h1>Todo list</h1>
+                <ul>
+                    {list}
+                </ul>
                 <NewTodoList createNewTodo={this.createNewTodo} />
             </div>
         )
